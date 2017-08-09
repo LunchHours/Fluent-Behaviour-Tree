@@ -55,7 +55,7 @@ namespace tests
                 .Build();
 
             Assert.IsType<InverterNode>(node);
-            Assert.Equal(BehaviourTreeStatus.Failure, node.Tick(new TimeData()));
+            Assert.Equal(BehaviourTreeStatus.Failure, node.Tick(new object()));
         }
 
         [Fact]
@@ -84,7 +84,7 @@ namespace tests
                 .Build();
 
             Assert.IsType<InverterNode>(node);
-            Assert.Equal(BehaviourTreeStatus.Failure, node.Tick(new TimeData()));
+            Assert.Equal(BehaviourTreeStatus.Failure, node.Tick(new object()));
         }
 
         [Fact]
@@ -101,7 +101,7 @@ namespace tests
                 .Build();
 
             Assert.IsType<InverterNode>(node);
-            Assert.Equal(BehaviourTreeStatus.Success, node.Tick(new TimeData()));
+            Assert.Equal(BehaviourTreeStatus.Success, node.Tick(new object()));
         }
 
         [Fact]
@@ -143,7 +143,7 @@ namespace tests
                 .Build();
 
             Assert.IsType<SequenceNode>(sequence);
-            Assert.Equal(BehaviourTreeStatus.Success, sequence.Tick(new TimeData()));
+            Assert.Equal(BehaviourTreeStatus.Success, sequence.Tick(new object()));
             Assert.Equal(2, invokeCount);
         }
 
@@ -170,7 +170,7 @@ namespace tests
                 .Build();
 
             Assert.IsType<ParallelNode>(parallel);
-            Assert.Equal(BehaviourTreeStatus.Success, parallel.Tick(new TimeData()));
+            Assert.Equal(BehaviourTreeStatus.Success, parallel.Tick(new object()));
             Assert.Equal(2, invokeCount);
         }
 
@@ -197,7 +197,7 @@ namespace tests
                 .Build();
 
             Assert.IsType<SelectorNode>(parallel);
-            Assert.Equal(BehaviourTreeStatus.Success, parallel.Tick(new TimeData()));
+            Assert.Equal(BehaviourTreeStatus.Success, parallel.Tick(new object()));
             Assert.Equal(2, invokeCount);
         }
 
@@ -224,7 +224,7 @@ namespace tests
                 .End()
                 .Build();
 
-            tree.Tick(new TimeData());
+            tree.Tick(new object());
 
             Assert.Equal(1, invokeCount);
         }

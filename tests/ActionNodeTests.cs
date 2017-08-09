@@ -12,7 +12,7 @@ namespace tests
         [Fact]
         public void can_run_action()
         {
-            var time = new TimeData();
+            var context = new object();
 
             var invokeCount = 0;
             var testObject = 
@@ -20,14 +20,14 @@ namespace tests
                     "some-action", 
                     t =>
                     {
-                        Assert.Equal(time, t);
+                        Assert.Equal(context, t);
 
                         ++invokeCount;
                         return BehaviourTreeStatus.Running;
                     }
                 );
 
-            Assert.Equal(BehaviourTreeStatus.Running, testObject.Tick(time));
+            Assert.Equal(BehaviourTreeStatus.Running, testObject.Tick(context));
             Assert.Equal(1, invokeCount);            
         }
     }

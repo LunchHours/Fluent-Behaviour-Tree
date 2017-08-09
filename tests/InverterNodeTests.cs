@@ -23,7 +23,7 @@ namespace tests
             Init();
 
             Assert.Throws<ApplicationException>(
-                () => testObject.Tick(new TimeData())
+                () => testObject.Tick(new object())
             );
         }
 
@@ -32,18 +32,18 @@ namespace tests
         {
             Init();
 
-            var time = new TimeData();
+            var context = new object();
 
             var mockChildNode = new Mock<IBehaviourTreeNode>();
             mockChildNode
-                .Setup(m => m.Tick(time))
+                .Setup(m => m.Tick(context))
                 .Returns(BehaviourTreeStatus.Success);
 
             testObject.AddChild(mockChildNode.Object);
 
-            Assert.Equal(BehaviourTreeStatus.Failure, testObject.Tick(time));
+            Assert.Equal(BehaviourTreeStatus.Failure, testObject.Tick(context));
 
-            mockChildNode.Verify(m => m.Tick(time), Times.Once());
+            mockChildNode.Verify(m => m.Tick(context), Times.Once());
         }
 
         [Fact]
@@ -51,18 +51,18 @@ namespace tests
         {
             Init();
 
-            var time = new TimeData();
+            var context = new object();
 
             var mockChildNode = new Mock<IBehaviourTreeNode>();
             mockChildNode
-                .Setup(m => m.Tick(time))
+                .Setup(m => m.Tick(context))
                 .Returns(BehaviourTreeStatus.Failure);
 
             testObject.AddChild(mockChildNode.Object);
 
-            Assert.Equal(BehaviourTreeStatus.Success, testObject.Tick(time));
+            Assert.Equal(BehaviourTreeStatus.Success, testObject.Tick(context));
 
-            mockChildNode.Verify(m => m.Tick(time), Times.Once());
+            mockChildNode.Verify(m => m.Tick(context), Times.Once());
         }
 
         [Fact]
@@ -70,18 +70,18 @@ namespace tests
         {
             Init();
 
-            var time = new TimeData();
+            var context = new object();
 
             var mockChildNode = new Mock<IBehaviourTreeNode>();
             mockChildNode
-                .Setup(m => m.Tick(time))
+                .Setup(m => m.Tick(context))
                 .Returns(BehaviourTreeStatus.Running);
 
             testObject.AddChild(mockChildNode.Object);
 
-            Assert.Equal(BehaviourTreeStatus.Running, testObject.Tick(time));
+            Assert.Equal(BehaviourTreeStatus.Running, testObject.Tick(context));
 
-            mockChildNode.Verify(m => m.Tick(time), Times.Once());
+            mockChildNode.Verify(m => m.Tick(context), Times.Once());
         }
 
         [Fact]
