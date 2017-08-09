@@ -6,6 +6,31 @@ Replaced `TimeData` class everywhere with generic `object` type allowing to pass
 
 Tests also refactored and are successful. 
 
+The documentation from the main repo has NOT been edited to accomodate for these changes. 
+
+### Example context usage
+```
+var builder = new BehaviourTreeBuilder();
+var treeRoot = 
+	builder.Sequence("my-sub-tree")
+		.Do("action1", context => 
+		{
+			// cast back the context
+			var ctx = (YourComplexContextClass) context;
+			return ctx.MeaningOfLife == 42
+				? BehaviourTreeStatus.Success
+				: BehaviourTreeStatus.Failure;
+		})
+	.End()
+	.Build();
+	
+var context = new YourComplexContextClass();
+context.MeaningOfLife = 42;
+// pass the context
+treeRoot.Tick(context);
+		
+```
+
 # Continuation of main repo
 
 C# behaviour tree library with a fluent API.
