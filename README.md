@@ -1,4 +1,12 @@
-# Fluent-Behaviour-Tree
+# Fluent-Behaviour-Tree With Context!
+
+## Differences with the main repo
+
+Replaced `TimeData` class everywhere with generic `object` type allowing to pass custom parameters to the actions. Such as an execution context. `TimeData` class completely removed. 
+
+Tests also refactored and are successful. 
+
+# Continuation of main repo
 
 C# behaviour tree library with a fluent API.
 
