@@ -16,7 +16,7 @@ var treeRoot =
 		.Do("action1", context => 
 		{
 			// no need to cast back or anything
-			return ctx.MeaningOfLife == 42
+			return context.MeaningOfLife == 42
 				? BehaviourTreeStatus.Success
 				: BehaviourTreeStatus.Failure;
 		})
