@@ -9,11 +9,11 @@ namespace tests
 {
     public class BehaviourTreeBuilderTests
     {
-        BehaviourTreeBuilder testObject;
+        BehaviourTreeBuilderDefault testObject;
 
         void Init()
         {
-            testObject = new BehaviourTreeBuilder();
+            testObject = new BehaviourTreeBuilderDefault();
         }
 
         [Fact]
@@ -54,7 +54,7 @@ namespace tests
                 .End()
                 .Build();
 
-            Assert.IsType<InverterNode>(node);
+            Assert.IsType<InverterNode<object>>(node);
             Assert.Equal(BehaviourTreeStatus.Failure, node.Tick(new object()));
         }
 
@@ -83,7 +83,7 @@ namespace tests
                 .End()
                 .Build();
 
-            Assert.IsType<InverterNode>(node);
+            Assert.IsType<InverterNode<object>>(node);
             Assert.Equal(BehaviourTreeStatus.Failure, node.Tick(new object()));
         }
 
@@ -100,7 +100,7 @@ namespace tests
                 .End()
                 .Build();
 
-            Assert.IsType<InverterNode>(node);
+            Assert.IsType<InverterNode<object>>(node);
             Assert.Equal(BehaviourTreeStatus.Success, node.Tick(new object()));
         }
 
@@ -142,7 +142,7 @@ namespace tests
                 .End()
                 .Build();
 
-            Assert.IsType<SequenceNode>(sequence);
+            Assert.IsType<SequenceNode<object>>(sequence);
             Assert.Equal(BehaviourTreeStatus.Success, sequence.Tick(new object()));
             Assert.Equal(2, invokeCount);
         }
@@ -169,7 +169,7 @@ namespace tests
                 .End()
                 .Build();
 
-            Assert.IsType<ParallelNode>(parallel);
+            Assert.IsType<ParallelNode<object>>(parallel);
             Assert.Equal(BehaviourTreeStatus.Success, parallel.Tick(new object()));
             Assert.Equal(2, invokeCount);
         }
@@ -196,7 +196,7 @@ namespace tests
                 .End()
                 .Build();
 
-            Assert.IsType<SelectorNode>(parallel);
+            Assert.IsType<SelectorNode<object>>(parallel);
             Assert.Equal(BehaviourTreeStatus.Success, parallel.Tick(new object()));
             Assert.Equal(2, invokeCount);
         }

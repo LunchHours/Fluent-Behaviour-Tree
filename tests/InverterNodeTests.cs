@@ -10,11 +10,11 @@ namespace tests
 {
     public class InverterNodeTests
     {
-        InverterNode testObject;
+        InverterNode<object> testObject;
 
         void Init()
         {
-            testObject = new InverterNode("some-node");
+            testObject = new InverterNode<object>("some-node");
         }
 
         [Fact]
@@ -34,7 +34,7 @@ namespace tests
 
             var context = new object();
 
-            var mockChildNode = new Mock<IBehaviourTreeNode>();
+            var mockChildNode = new Mock<IBehaviourTreeNode<object>>();
             mockChildNode
                 .Setup(m => m.Tick(context))
                 .Returns(BehaviourTreeStatus.Success);
@@ -53,7 +53,7 @@ namespace tests
 
             var context = new object();
 
-            var mockChildNode = new Mock<IBehaviourTreeNode>();
+            var mockChildNode = new Mock<IBehaviourTreeNode<object>>();
             mockChildNode
                 .Setup(m => m.Tick(context))
                 .Returns(BehaviourTreeStatus.Failure);
@@ -72,7 +72,7 @@ namespace tests
 
             var context = new object();
 
-            var mockChildNode = new Mock<IBehaviourTreeNode>();
+            var mockChildNode = new Mock<IBehaviourTreeNode<object>>();
             mockChildNode
                 .Setup(m => m.Tick(context))
                 .Returns(BehaviourTreeStatus.Running);
@@ -89,10 +89,10 @@ namespace tests
         {
             Init();
 
-            var mockChildNode1 = new Mock<IBehaviourTreeNode>();
+            var mockChildNode1 = new Mock<IBehaviourTreeNode<object>>();
             testObject.AddChild(mockChildNode1.Object);
 
-            var mockChildNode2 = new Mock<IBehaviourTreeNode>();
+            var mockChildNode2 = new Mock<IBehaviourTreeNode<object>>();
             Assert.Throws<ApplicationException>(() => 
                 testObject.AddChild(mockChildNode2.Object)
             );

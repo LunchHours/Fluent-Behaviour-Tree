@@ -40,6 +40,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BehaviourTreeBuilder.cs" />
+    <Compile Include="BehaviourTreeBuilderDefault.cs" />
     <Compile Include="BehaviourTreeStatus.cs" />
     <Compile Include="IParentBehaviourTreeNode.cs" />
     <Compile Include="IBehaviourTreeNode.cs" />

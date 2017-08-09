@@ -16,7 +16,7 @@ namespace tests
 
             var invokeCount = 0;
             var testObject = 
-                new ActionNode(
+                new ActionNode<object>(
                     "some-action", 
                     t =>
                     {

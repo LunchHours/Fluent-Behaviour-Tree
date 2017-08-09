@@ -10,11 +10,11 @@ namespace tests
 {
     public class SelectorNodeTests
     {
-        SelectorNode testObject;
+        SelectorNode<object> testObject;
 
         void Init()
         {
-            testObject = new SelectorNode("some-selector");
+            testObject = new SelectorNode<object>("some-selector");
         }
 
         [Fact]
@@ -24,12 +24,12 @@ namespace tests
 
             var context = new object();
 
-            var mockChild1 = new Mock<IBehaviourTreeNode>();
+            var mockChild1 = new Mock<IBehaviourTreeNode<object>>();
             mockChild1
                 .Setup(m => m.Tick(context))
                 .Returns(BehaviourTreeStatus.Success);
 
-            var mockChild2 = new Mock<IBehaviourTreeNode>();
+            var mockChild2 = new Mock<IBehaviourTreeNode<object>>();
 
             testObject.AddChild(mockChild1.Object);
             testObject.AddChild(mockChild2.Object);
@@ -47,12 +47,12 @@ namespace tests
 
             var context = new object();
 
-            var mockChild1 = new Mock<IBehaviourTreeNode>();
+            var mockChild1 = new Mock<IBehaviourTreeNode<object>>();
             mockChild1
                 .Setup(m => m.Tick(context))
                 .Returns(BehaviourTreeStatus.Running);
 
-            var mockChild2 = new Mock<IBehaviourTreeNode>();
+            var mockChild2 = new Mock<IBehaviourTreeNode<object>>();
 
             testObject.AddChild(mockChild1.Object);
             testObject.AddChild(mockChild2.Object);
@@ -70,12 +70,12 @@ namespace tests
 
             var context = new object();
 
-            var mockChild1 = new Mock<IBehaviourTreeNode>();
+            var mockChild1 = new Mock<IBehaviourTreeNode<object>>();
             mockChild1
                 .Setup(m => m.Tick(context))
                 .Returns(BehaviourTreeStatus.Failure);
 
-            var mockChild2 = new Mock<IBehaviourTreeNode>();
+            var mockChild2 = new Mock<IBehaviourTreeNode<object>>();
             mockChild2
                 .Setup(m => m.Tick(context))
                 .Returns(BehaviourTreeStatus.Success);
@@ -96,12 +96,12 @@ namespace tests
 
             var context = new object();
 
-            var mockChild1 = new Mock<IBehaviourTreeNode>();
+            var mockChild1 = new Mock<IBehaviourTreeNode<object>>();
             mockChild1
                 .Setup(m => m.Tick(context))
                 .Returns(BehaviourTreeStatus.Failure);
 
-            var mockChild2 = new Mock<IBehaviourTreeNode>();
+            var mockChild2 = new Mock<IBehaviourTreeNode<object>>();
             mockChild2
                 .Setup(m => m.Tick(context))
                 .Returns(BehaviourTreeStatus.Failure);

@@ -10,11 +10,11 @@ namespace tests
 {
     public class SequenceNodeTests
     {
-        SequenceNode testObject;
+        SequenceNode<object> testObject;
 
         void Init()
         {
-            testObject = new SequenceNode("some-sequence");
+            testObject = new SequenceNode<object>("some-sequence");
         }
         
         [Fact]
@@ -26,7 +26,7 @@ namespace tests
 
             var callOrder = 0;
 
-            var mockChild1 = new Mock<IBehaviourTreeNode>();
+            var mockChild1 = new Mock<IBehaviourTreeNode<object>>();
             mockChild1
                 .Setup(m => m.Tick(context))
                 .Returns(BehaviourTreeStatus.Success)
@@ -35,7 +35,7 @@ namespace tests
                      Assert.Equal(1, ++callOrder);
                  });
 
-            var mockChild2 = new Mock<IBehaviourTreeNode>();
+            var mockChild2 = new Mock<IBehaviourTreeNode<object>>();
             mockChild2
                 .Setup(m => m.Tick(context))
                 .Returns(BehaviourTreeStatus.Success)
@@ -62,12 +62,12 @@ namespace tests
 
             var context = new object();
 
-            var mockChild1 = new Mock<IBehaviourTreeNode>();
+            var mockChild1 = new Mock<IBehaviourTreeNode<object>>();
             mockChild1
                 .Setup(m => m.Tick(context))
                 .Returns(BehaviourTreeStatus.Running);
 
-            var mockChild2 = new Mock<IBehaviourTreeNode>();
+            var mockChild2 = new Mock<IBehaviourTreeNode<object>>();
 
             testObject.AddChild(mockChild1.Object);
             testObject.AddChild(mockChild2.Object);
@@ -85,12 +85,12 @@ namespace tests
 
             var context = new object();
 
-            var mockChild1 = new Mock<IBehaviourTreeNode>();
+            var mockChild1 = new Mock<IBehaviourTreeNode<object>>();
             mockChild1
                 .Setup(m => m.Tick(context))
                 .Returns(BehaviourTreeStatus.Failure);
 
-            var mockChild2 = new Mock<IBehaviourTreeNode>();
+            var mockChild2 = new Mock<IBehaviourTreeNode<object>>();
 
             testObject.AddChild(mockChild1.Object);
             testObject.AddChild(mockChild2.Object);
@@ -108,12 +108,12 @@ namespace tests
 
             var context = new object();
 
-            var mockChild1 = new Mock<IBehaviourTreeNode>();
+            var mockChild1 = new Mock<IBehaviourTreeNode<object>>();
             mockChild1
                 .Setup(m => m.Tick(context))
                 .Returns(BehaviourTreeStatus.Success);
 
-            var mockChild2 = new Mock<IBehaviourTreeNode>();
+            var mockChild2 = new Mock<IBehaviourTreeNode<object>>();
             mockChild2
                 .Setup(m => m.Tick(context))
                 .Returns(BehaviourTreeStatus.Failure);
