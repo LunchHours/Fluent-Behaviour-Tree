@@ -10,13 +10,12 @@ The documentation from the main repo has NOT been edited to accomodate for these
 
 ### Example context usage
 ```
-var builder = new BehaviourTreeBuilder();
+var builder = new BehaviourTreeBuilder<YourComplexContextClass>();
 var treeRoot = 
 	builder.Sequence("my-sub-tree")
 		.Do("action1", context => 
 		{
-			// cast back the context
-			var ctx = (YourComplexContextClass) context;
+			// no need to cast back or anything
 			return ctx.MeaningOfLife == 42
 				? BehaviourTreeStatus.Success
 				: BehaviourTreeStatus.Failure;
@@ -26,7 +25,7 @@ var treeRoot =
 	
 var context = new YourComplexContextClass();
 context.MeaningOfLife = 42;
-// pass the context
+// just pass the context
 treeRoot.Tick(context);
 		
 ```
